@@ -1,13 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-def about(request):
-    return HttpResponse("This is about page")
-
 def home(request):
     return render(request, 'home.html', {'greeting': 'Hi!'})
 
 def reverse(request):
-    text = request.POST.get("textarea")
-    text_reverse = text.reverse()
-    return HttpResponse(text_reverse)
+    user_text = request.GET['usertext']
+    reversed_text = user_text[::-1]
+    return render(request, 'reverse.html', {'usertext': user_text, 'reversedtext': reversed_text})
